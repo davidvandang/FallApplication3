@@ -1,10 +1,5 @@
 package com.example.fallapplication3;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -14,6 +9,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     // Declare necessary variables and objects
     private SensorManager sensorManager;
     private Sensor accelerometer;
-    private fall fallDetector;
+    private fallLogic fallDetector;
 
     private boolean isOnline = true;
 
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         // Instantiate the fall class
-        fallDetector = new fall();
+        fallDetector = new fallLogic();
 
         // Set up the bottom navigation item selected listener
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

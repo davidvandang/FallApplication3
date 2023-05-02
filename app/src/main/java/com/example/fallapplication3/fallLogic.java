@@ -5,13 +5,13 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.Log;
 
-public class fall implements SensorEventListener {
+public class fallLogic implements SensorEventListener {
     private boolean isRecording = false;
     private int recordingCount = 0;
 
     private Sensor accelerometer;
 
-    public fall() {
+    public fallLogic() {
         this.accelerometer = accelerometer;
     }
 
