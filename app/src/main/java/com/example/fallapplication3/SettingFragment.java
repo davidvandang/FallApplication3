@@ -1,9 +1,12 @@
 package com.example.fallapplication3;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
 
@@ -57,7 +60,34 @@ public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setting, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_setting, container, false);
+
+        EditText timerUpdate = view.findViewById(R.id.edit_timer);
+        timerUpdate.setText(String.valueOf((Timer.getTimerSeconds(requireContext()))));
+        timerUpdate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try{
+                    int timerSeconds = Integer.parseInt(editable.toString());
+                    Timer.setTimerSeconds(requireContext(), timerSeconds);
+                }
+                catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        return view;
     }
 }
