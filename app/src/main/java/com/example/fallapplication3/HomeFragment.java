@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment {
                     // Change the button text and color
                     deactivateButton.setText("Activate");
                     deactivateButton.setBackgroundResource(R.drawable.green_rounded_rectangle_button);
+                    fallLogic.setfallDetectionStatus(false);
                 } else {
                     // Change the status text and color
                     statusTextView.setText("Online");
@@ -50,6 +51,7 @@ public class HomeFragment extends Fragment {
                     // Change the button text and color
                     deactivateButton.setText("Deactivate");
                     deactivateButton.setBackgroundResource(R.drawable.rounded_rectangle_button);
+                    fallLogic.setfallDetectionStatus(true);
                 }
             }
         });

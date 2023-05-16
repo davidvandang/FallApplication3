@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Sensor accelerometer;
     private fallLogic fallDetector;
 
+
     private boolean isOnline = true;
 
     BottomNavigationView bottomNavigationView;
@@ -71,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         // Instantiate the fall class
-        fallDetector = new fallLogic();
+        Timer timer = new Timer();
+        fallDetector = new fallLogic(this, timer);
 
         // Set up the bottom navigation item selected listener
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
