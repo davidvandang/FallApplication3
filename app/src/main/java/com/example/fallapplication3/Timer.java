@@ -9,7 +9,7 @@ public class Timer {
     private static final int timer_default = 10;
     private int timeLeft;
     private static final String timer_Key = "timer_key";
-    private static CountDownTimer timer;
+    private CountDownTimer timer;
 
     public Timer(){
         this.timeLeft = timer_default;
@@ -51,7 +51,7 @@ public class Timer {
         };
         timer.start();
     }
-    public static void cancelTimer(){
+    public void cancelTimer(){
         if(timer != null){
             timer.cancel();
         }

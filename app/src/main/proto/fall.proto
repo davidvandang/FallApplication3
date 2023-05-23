@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package fall_detection;
+
+// The fall detection service definition.
+service FallDetection {
+  // Sends a fall detection incident
+  rpc SendFallDetection (FallDetectionRequest) returns (FallDetectionReply) {}
+}
+
+// The request message containing the user's id, date and time of the fall incident
+message FallDetectionRequest {
+  string user_id = 1;
+  string date = 2;
+  string time = 3;
+}
+
+// The response message containing a status message.
+message FallDetectionReply {
+  string message = 1;
+}

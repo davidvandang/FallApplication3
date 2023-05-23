@@ -1,6 +1,8 @@
 package com.example.fallapplication3;
 
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
@@ -10,12 +12,14 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     JournalFragment journalFragment = new JournalFragment();
     SettingFragment settingFragment = new SettingFragment();
     private static final int PERMISSION_REQUEST_CODE = 100;
+    private Object Build;
 
     // Method to request necessary permissions if not already granted
     private void requestPermissionsIfNeeded() {
@@ -54,15 +59,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = android.os.Build.VERSION_CODES.O)
     @Override
     //Navigation Bar
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // Initialize bottom navigation view
         bottomNavigationView = findViewById(R.id.bottomNavigationView2);
+
 
         // Set the home fragment as the default fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, homeFragment).commit();
@@ -74,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
         // Instantiate the fall class
         Timer timer = new Timer();
         fallDetector = new fallLogic(this, timer);
+
+
+        NotificationChannel channel = new NotificationChannel("1", "Fall Notification", NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription("Notifications for fall detection");
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
 
         // Set up the bottom navigation item selected listener
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -98,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         });
         requestPermissionsIfNeeded();
     }
+
 
     @Override
     protected void onResume() {

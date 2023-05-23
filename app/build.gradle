@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.fallapplication3"
-        minSdk 21
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -48,14 +48,17 @@ protobuf {
 }
 
 dependencies {
-    implementation 'io.grpc:grpc-okhttp:1.47.0'
-    implementation 'io.grpc:grpc-protobuf-lite:1.47.0'
-    implementation 'io.grpc:grpc-stub:1.47.0'
+    // GRPC Deps
+    implementation 'io.grpc:grpc-okhttp:1.55.1'
+    implementation 'io.grpc:grpc-protobuf-lite:1.55.1'
+    implementation 'io.grpc:grpc-stub:1.55.1'
+    implementation 'org.apache.tomcat:annotations-api:6.0.53'
+
     implementation 'org.apache.tomcat:annotations-api:6.0.53'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.opencsv:opencsv:5.5.2'
+    implementation 'com.opencsv:opencsv:5.7.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
